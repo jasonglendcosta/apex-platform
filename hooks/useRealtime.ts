@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { RealtimeChannel } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
 
@@ -115,5 +115,3 @@ export function useRealtimeReservations(customerId: string) {
 
   return { reservations, loading }
 }
-
-import { useRef }
