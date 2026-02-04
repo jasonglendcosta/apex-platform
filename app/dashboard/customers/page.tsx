@@ -3,9 +3,7 @@
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { Header } from '@/components/layout/Header'
-import { CustomerList } from '@/components/customers/CustomerList'
-import { CustomerProfile } from '@/components/customers/CustomerProfile'
-import { CustomerForm } from '@/components/customers/CustomerForm'
+import { CustomerList, CustomerProfile, CustomerForm } from '@/components/customers'
 
 interface Customer {
   id: string
