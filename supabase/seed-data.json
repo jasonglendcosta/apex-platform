@@ -1,0 +1,261 @@
+{
+  "organizations": [
+    {
+      "id": "11111111-1111-1111-1111-111111111111",
+      "name": "One Development",
+      "logo_url": "/images/one-development-logo.png",
+      "primary_color": "#D86DCB",
+      "secondary_color": "#0a0a0f",
+      "website": "https://onedevelopment.ae",
+      "phone": "+971 2 123 4567",
+      "email": "info@onedevelopment.ae",
+      "address": "Al Reem Island, Abu Dhabi, UAE"
+    }
+  ],
+  "projects": [
+    {
+      "id": "22222222-2222-2222-2222-222222222222",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "name": "Laguna Residence",
+      "slug": "laguna-residence",
+      "location": "Al Reem Island",
+      "city": "Abu Dhabi",
+      "country": "UAE",
+      "total_units": 50,
+      "total_floors": 15,
+      "launch_date": "2024-06-01",
+      "completion_date": "2027-12-31",
+      "description": "Laguna Residence offers an exceptional waterfront living experience on Al Reem Island. Featuring stunning sea views, world-class amenities, and premium finishes throughout. Each residence is designed with modern living in mind, offering spacious layouts and floor-to-ceiling windows.",
+      "hero_image_url": "/images/laguna-hero.jpg",
+      "status": "active",
+      "amenities": [
+        "Infinity Pool",
+        "Private Beach Access",
+        "Fitness Center",
+        "Spa & Wellness",
+        "Kids Play Area",
+        "BBQ Terrace",
+        "Concierge Service",
+        "Covered Parking",
+        "24/7 Security",
+        "Landscaped Gardens"
+      ]
+    }
+  ],
+  "payment_plans": [
+    {
+      "id": "33333333-3333-3333-3333-333333333333",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "name": "Standard 60/40",
+      "description": "60% during construction, 40% on handover",
+      "is_default": true,
+      "milestones": [
+        {"name": "Booking Deposit", "percent": 10, "due_days": 0},
+        {"name": "1st Installment", "percent": 10, "due_days": 30},
+        {"name": "2nd Installment", "percent": 10, "due_days": 120},
+        {"name": "3rd Installment", "percent": 10, "due_days": 240},
+        {"name": "4th Installment", "percent": 10, "due_days": 360},
+        {"name": "5th Installment", "percent": 10, "due_days": 480},
+        {"name": "Handover", "percent": 40, "due_days": 730}
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333334",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "name": "Premium 50/50",
+      "description": "50% during construction, 50% on handover",
+      "is_default": false,
+      "milestones": [
+        {"name": "Booking Deposit", "percent": 10, "due_days": 0},
+        {"name": "1st Installment", "percent": 10, "due_days": 60},
+        {"name": "2nd Installment", "percent": 15, "due_days": 180},
+        {"name": "3rd Installment", "percent": 15, "due_days": 360},
+        {"name": "Handover", "percent": 50, "due_days": 730}
+      ]
+    },
+    {
+      "id": "33333333-3333-3333-3333-333333333335",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "name": "Post-Handover 40/60",
+      "description": "40% during construction, 60% post-handover over 3 years",
+      "is_default": false,
+      "milestones": [
+        {"name": "Booking Deposit", "percent": 10, "due_days": 0},
+        {"name": "1st Installment", "percent": 10, "due_days": 90},
+        {"name": "2nd Installment", "percent": 10, "due_days": 270},
+        {"name": "3rd Installment", "percent": 10, "due_days": 540},
+        {"name": "Handover", "percent": 20, "due_days": 730},
+        {"name": "Post-Handover 1", "percent": 20, "due_days": 1095},
+        {"name": "Post-Handover 2", "percent": 20, "due_days": 1460}
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "44444444-4444-4444-4444-444444444441",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "email": "admin@onedevelopment.ae",
+      "name": "System Admin",
+      "role": "admin",
+      "phone": "+971 50 111 1111",
+      "commission_rate": 0,
+      "is_active": true
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444442",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "email": "ahmed.rashid@onedevelopment.ae",
+      "name": "Ahmed Al-Rashid",
+      "role": "agent",
+      "phone": "+971 50 222 2222",
+      "commission_rate": 2.5,
+      "is_active": true
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444443",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "email": "sarah.johnson@onedevelopment.ae",
+      "name": "Sarah Johnson",
+      "role": "agent",
+      "phone": "+971 50 333 3333",
+      "commission_rate": 2.5,
+      "is_active": true
+    },
+    {
+      "id": "44444444-4444-4444-4444-444444444444",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "email": "mohammed.hassan@onedevelopment.ae",
+      "name": "Mohammed Hassan",
+      "role": "manager",
+      "phone": "+971 50 444 4444",
+      "commission_rate": 1.5,
+      "is_active": true
+    }
+  ],
+  "units": [
+    {"id": "55555555-5555-5555-5555-555555550101", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0101", "floor": 1, "bedrooms": 1, "bathrooms": 1, "area_sqft": 750, "base_price": 950000, "current_price": 950000, "view_type": "garden", "unit_type": "1br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550102", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0102", "floor": 1, "bedrooms": 1, "bathrooms": 1, "area_sqft": 780, "base_price": 980000, "current_price": 980000, "view_type": "pool", "unit_type": "1br", "aspect": "S", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550103", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0103", "floor": 1, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1150, "base_price": 1450000, "current_price": 1450000, "view_type": "garden", "unit_type": "2br", "aspect": "E", "is_corner": true, "status": "reserved"},
+    
+    {"id": "55555555-5555-5555-5555-555555550201", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0201", "floor": 2, "bedrooms": 1, "bathrooms": 1, "area_sqft": 750, "base_price": 970000, "current_price": 970000, "view_type": "garden", "unit_type": "1br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550202", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0202", "floor": 2, "bedrooms": 1, "bathrooms": 1, "area_sqft": 780, "base_price": 1000000, "current_price": 1000000, "view_type": "pool", "unit_type": "1br", "aspect": "S", "is_corner": false, "status": "booked"},
+    {"id": "55555555-5555-5555-5555-555555550203", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0203", "floor": 2, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1150, "base_price": 1480000, "current_price": 1480000, "view_type": "pool", "unit_type": "2br", "aspect": "W", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550204", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0204", "floor": 2, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1200, "base_price": 1520000, "current_price": 1520000, "view_type": "garden", "unit_type": "2br", "aspect": "E", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555550301", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0301", "floor": 3, "bedrooms": 1, "bathrooms": 1, "area_sqft": 750, "base_price": 990000, "current_price": 990000, "view_type": "pool", "unit_type": "1br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550302", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0302", "floor": 3, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1180, "base_price": 1520000, "current_price": 1520000, "view_type": "pool", "unit_type": "2br", "aspect": "S", "is_corner": false, "status": "sold"},
+    {"id": "55555555-5555-5555-5555-555555550303", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0303", "floor": 3, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1200, "base_price": 1550000, "current_price": 1550000, "view_type": "lagoon", "unit_type": "2br", "aspect": "E", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555550401", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0401", "floor": 4, "bedrooms": 1, "bathrooms": 1, "area_sqft": 780, "base_price": 1020000, "current_price": 1020000, "view_type": "lagoon", "unit_type": "1br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550402", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0402", "floor": 4, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1180, "base_price": 1550000, "current_price": 1550000, "view_type": "pool", "unit_type": "2br", "aspect": "S", "is_corner": false, "status": "reserved"},
+    {"id": "55555555-5555-5555-5555-555555550403", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0403", "floor": 4, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1220, "base_price": 1600000, "current_price": 1600000, "view_type": "lagoon", "unit_type": "2br", "aspect": "E", "is_corner": true, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550404", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0404", "floor": 4, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1650, "base_price": 2200000, "current_price": 2200000, "view_type": "lagoon", "unit_type": "3br", "aspect": "W", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555550501", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0501", "floor": 5, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1200, "base_price": 1620000, "current_price": 1650000, "view_type": "sea", "unit_type": "2br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550502", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0502", "floor": 5, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1220, "base_price": 1650000, "current_price": 1680000, "view_type": "sea", "unit_type": "2br", "aspect": "S", "is_corner": false, "status": "booked"},
+    {"id": "55555555-5555-5555-5555-555555550503", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0503", "floor": 5, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1680, "base_price": 2280000, "current_price": 2320000, "view_type": "sea", "unit_type": "3br", "aspect": "E", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555550601", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0601", "floor": 6, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1200, "base_price": 1680000, "current_price": 1700000, "view_type": "sea", "unit_type": "2br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550602", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0602", "floor": 6, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1220, "base_price": 1700000, "current_price": 1720000, "view_type": "sea", "unit_type": "2br", "aspect": "S", "is_corner": false, "status": "sold"},
+    {"id": "55555555-5555-5555-5555-555555550603", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0603", "floor": 6, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1700, "base_price": 2350000, "current_price": 2400000, "view_type": "sea", "unit_type": "3br", "aspect": "E", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555550701", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0701", "floor": 7, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1200, "base_price": 1720000, "current_price": 1750000, "view_type": "sea", "unit_type": "2br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550702", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0702", "floor": 7, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1250, "base_price": 1780000, "current_price": 1800000, "view_type": "sea", "unit_type": "2br", "aspect": "S", "is_corner": false, "status": "reserved"},
+    {"id": "55555555-5555-5555-5555-555555550703", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0703", "floor": 7, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1720, "base_price": 2420000, "current_price": 2480000, "view_type": "sea", "unit_type": "3br", "aspect": "E", "is_corner": true, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550704", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0704", "floor": 7, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1680, "base_price": 2380000, "current_price": 2420000, "view_type": "lagoon", "unit_type": "3br", "aspect": "W", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555550801", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0801", "floor": 8, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1220, "base_price": 1780000, "current_price": 1820000, "view_type": "sea", "unit_type": "2br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550802", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0802", "floor": 8, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1250, "base_price": 1820000, "current_price": 1850000, "view_type": "sea", "unit_type": "2br", "aspect": "S", "is_corner": false, "status": "spa_signed"},
+    {"id": "55555555-5555-5555-5555-555555550803", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0803", "floor": 8, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1750, "base_price": 2520000, "current_price": 2580000, "view_type": "sea", "unit_type": "3br", "aspect": "E", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555550901", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0901", "floor": 9, "bedrooms": 2, "bathrooms": 2, "area_sqft": 1250, "base_price": 1850000, "current_price": 1900000, "view_type": "sea", "unit_type": "2br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550902", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0902", "floor": 9, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1720, "base_price": 2580000, "current_price": 2650000, "view_type": "sea", "unit_type": "3br", "aspect": "S", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555550903", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-0903", "floor": 9, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1780, "base_price": 2680000, "current_price": 2750000, "view_type": "sea", "unit_type": "3br", "aspect": "E", "is_corner": true, "status": "sold"},
+    
+    {"id": "55555555-5555-5555-5555-555555551001", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1001", "floor": 10, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1780, "base_price": 2750000, "current_price": 2850000, "view_type": "sea", "unit_type": "3br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555551002", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1002", "floor": 10, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1800, "base_price": 2800000, "current_price": 2900000, "view_type": "sea", "unit_type": "3br", "aspect": "S", "is_corner": false, "status": "booked"},
+    {"id": "55555555-5555-5555-5555-555555551003", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1003", "floor": 10, "bedrooms": 3, "bathrooms": 3.5, "area_sqft": 1850, "base_price": 2900000, "current_price": 3000000, "view_type": "sea", "unit_type": "3br", "aspect": "E", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555551101", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1101", "floor": 11, "bedrooms": 3, "bathrooms": 3, "area_sqft": 1800, "base_price": 2880000, "current_price": 2980000, "view_type": "sea", "unit_type": "3br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555551102", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1102", "floor": 11, "bedrooms": 3, "bathrooms": 3.5, "area_sqft": 1880, "base_price": 3000000, "current_price": 3100000, "view_type": "sea", "unit_type": "3br", "aspect": "S", "is_corner": false, "status": "reserved"},
+    {"id": "55555555-5555-5555-5555-555555551103", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1103", "floor": 11, "bedrooms": 4, "bathrooms": 4, "area_sqft": 2200, "base_price": 3600000, "current_price": 3750000, "view_type": "sea", "unit_type": "4br", "aspect": "E", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555551201", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1201", "floor": 12, "bedrooms": 3, "bathrooms": 3.5, "area_sqft": 1850, "base_price": 3050000, "current_price": 3180000, "view_type": "sea", "unit_type": "3br", "aspect": "N", "is_corner": false, "status": "sold"},
+    {"id": "55555555-5555-5555-5555-555555551202", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1202", "floor": 12, "bedrooms": 3, "bathrooms": 3.5, "area_sqft": 1900, "base_price": 3150000, "current_price": 3280000, "view_type": "sea", "unit_type": "3br", "aspect": "S", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555551203", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1203", "floor": 12, "bedrooms": 4, "bathrooms": 4.5, "area_sqft": 2350, "base_price": 3900000, "current_price": 4100000, "view_type": "sea", "unit_type": "4br", "aspect": "E", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555551301", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1301", "floor": 13, "bedrooms": 3, "bathrooms": 3.5, "area_sqft": 1900, "base_price": 3250000, "current_price": 3400000, "view_type": "sea", "unit_type": "3br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555551302", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1302", "floor": 13, "bedrooms": 4, "bathrooms": 4, "area_sqft": 2280, "base_price": 3950000, "current_price": 4150000, "view_type": "sea", "unit_type": "4br", "aspect": "S", "is_corner": false, "status": "spa_signed"},
+    {"id": "55555555-5555-5555-5555-555555551303", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1303", "floor": 13, "bedrooms": 4, "bathrooms": 4.5, "area_sqft": 2450, "base_price": 4250000, "current_price": 4500000, "view_type": "sea", "unit_type": "4br", "aspect": "E", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555551401", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1401", "floor": 14, "bedrooms": 4, "bathrooms": 4, "area_sqft": 2350, "base_price": 4200000, "current_price": 4450000, "view_type": "sea", "unit_type": "4br", "aspect": "N", "is_corner": false, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555551402", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1402", "floor": 14, "bedrooms": 4, "bathrooms": 4.5, "area_sqft": 2500, "base_price": 4500000, "current_price": 4800000, "view_type": "sea", "unit_type": "4br", "aspect": "S", "is_corner": false, "status": "sold"},
+    {"id": "55555555-5555-5555-5555-555555551403", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-1403", "floor": 14, "bedrooms": 4, "bathrooms": 5, "area_sqft": 2800, "base_price": 5200000, "current_price": 5500000, "view_type": "sea", "unit_type": "4br", "aspect": "E", "is_corner": true, "status": "available"},
+    
+    {"id": "55555555-5555-5555-5555-555555551501", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-PH01", "floor": 15, "bedrooms": 4, "bathrooms": 5, "area_sqft": 3500, "base_price": 8200000, "current_price": 8500000, "view_type": "sea", "unit_type": "penthouse", "aspect": "N", "is_corner": true, "status": "available"},
+    {"id": "55555555-5555-5555-5555-555555551502", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-PH02", "floor": 15, "bedrooms": 5, "bathrooms": 6, "area_sqft": 4200, "base_price": 10500000, "current_price": 11000000, "view_type": "sea", "unit_type": "penthouse", "aspect": "S", "is_corner": true, "status": "reserved"},
+    {"id": "55555555-5555-5555-5555-555555551503", "project_id": "22222222-2222-2222-2222-222222222222", "unit_number": "LR-PH03", "floor": 15, "bedrooms": 5, "bathrooms": 6.5, "area_sqft": 5000, "base_price": 12500000, "current_price": 13500000, "view_type": "sea", "unit_type": "penthouse", "aspect": "E", "is_corner": true, "status": "available"}
+  ],
+  "customers": [
+    {
+      "id": "66666666-6666-6666-6666-666666666601",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "name": "Khalid Al Maktoum",
+      "email": "khalid.maktoum@email.com",
+      "phone": "+971 50 888 8888",
+      "nationality": "UAE",
+      "source": "walk_in",
+      "assigned_agent_id": "44444444-4444-4444-4444-444444444442",
+      "lead_score": 85,
+      "lead_status": "negotiating"
+    },
+    {
+      "id": "66666666-6666-6666-6666-666666666602",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "name": "James Richardson",
+      "email": "j.richardson@investcorp.com",
+      "phone": "+44 20 7123 4567",
+      "nationality": "UK",
+      "source": "website",
+      "assigned_agent_id": "44444444-4444-4444-4444-444444444443",
+      "lead_score": 72,
+      "lead_status": "qualified"
+    },
+    {
+      "id": "66666666-6666-6666-6666-666666666603",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "name": "Chen Wei Lin",
+      "email": "weilin.chen@chinamail.com",
+      "phone": "+86 138 0013 8000",
+      "nationality": "China",
+      "source": "broker",
+      "assigned_agent_id": "44444444-4444-4444-4444-444444444442",
+      "lead_score": 68,
+      "lead_status": "viewing_scheduled"
+    },
+    {
+      "id": "66666666-6666-6666-6666-666666666604",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "name": "Maria Santos",
+      "email": "maria.santos@outlook.com",
+      "phone": "+971 55 777 7777",
+      "nationality": "Philippines",
+      "source": "referral",
+      "assigned_agent_id": "44444444-4444-4444-4444-444444444443",
+      "lead_score": 55,
+      "lead_status": "contacted"
+    },
+    {
+      "id": "66666666-6666-6666-6666-666666666605",
+      "org_id": "11111111-1111-1111-1111-111111111111",
+      "name": "Dmitri Volkov",
+      "email": "dmitri.volkov@yandex.ru",
+      "phone": "+7 495 123 4567",
+      "nationality": "Russia",
+      "source": "exhibition",
+      "assigned_agent_id": "44444444-4444-4444-4444-444444444442",
+      "lead_score": 78,
+      "lead_status": "won"
+    }
+  ]
+}
