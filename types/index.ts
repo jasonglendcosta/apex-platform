@@ -319,3 +319,30 @@ export interface UnitFilters {
   view_type?: ViewType[];
   unit_type?: UnitType[];
 }
+
+// Offer Types
+export type OfferStatus = 'draft' | 'pending' | 'approved' | 'rejected' | 'expired';
+
+export interface OfferFormData {
+  unit_id: string;
+  customer_id: string;
+  price: number;
+  discount_percentage: number;
+  payment_plan_id: string;
+  valid_until: string;
+  notes?: string;
+}
+
+export interface Offer {
+  id: string;
+  unit: Unit;
+  customer: Customer;
+  price: number;
+  discount_percentage: number;
+  payment_plan: PaymentPlan;
+  status: OfferStatus;
+  created_at: string;
+  valid_until: string;
+  created_by: User;
+  notes?: string;
+}

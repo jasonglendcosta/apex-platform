@@ -179,3 +179,20 @@ export function isEmpty(value: unknown): boolean {
   if (typeof value === 'object' && Object.keys(value).length === 0) return true;
   return false;
 }
+
+/**
+ * Get human-readable status label
+ */
+export function getStatusLabel(status: string): string {
+  const labels: Record<string, string> = {
+    available: 'Available',
+    reserved: 'Reserved',
+    booked: 'Booked',
+    spa_signed: 'SPA Signed',
+    spa_executed: 'SPA Executed',
+    registered: 'Registered',
+    sold: 'Sold',
+    blocked: 'Blocked',
+  };
+  return labels[status] || status;
+}
