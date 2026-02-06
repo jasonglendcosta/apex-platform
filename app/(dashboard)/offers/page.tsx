@@ -37,6 +37,10 @@ const mockUnit: Unit = {
   view_type: 'sea',
   unit_type: '2br',
   aspect: 'NE',
+  is_corner: false,
+  balcony_sqft: 120,
+  unit_images: [],
+  features: ['Sea View', 'Balcony', 'High Floor'],
   status: 'available',
   created_at: new Date().toISOString(),
   updated_at: new Date().toISOString(),
@@ -51,7 +55,10 @@ const mockCustomer: Customer = {
   nationality: 'UAE',
   source: 'referral',
   lead_score: 85,
+  lead_status: 'negotiating',
+  tags: [],
   created_at: new Date().toISOString(),
+  updated_at: new Date().toISOString(),
 };
 
 const mockAgent: User = {
@@ -62,7 +69,9 @@ const mockAgent: User = {
   role: 'agent',
   phone: '+971 50 987 6543',
   commission_rate: 2.0,
+  is_active: true,
   created_at: new Date().toISOString(),
+  updated_at: new Date().toISOString(),
 };
 
 const mockPaymentPlans: PaymentPlan[] = [
