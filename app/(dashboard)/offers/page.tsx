@@ -80,6 +80,7 @@ const mockPaymentPlans: PaymentPlan[] = [
     org_id: 'default',
     name: '60/40 Payment Plan',
     description: '60% during construction, 40% on handover',
+    is_default: true,
     milestones: [
       { name: 'Booking Deposit', percent: 10, due_days: 0 },
       { name: '1st Installment', percent: 10, due_days: 30 },
@@ -90,12 +91,14 @@ const mockPaymentPlans: PaymentPlan[] = [
       { name: 'On Handover', percent: 40, due_days: 720 },
     ],
     created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   },
   {
     id: 'pp-80-20',
     org_id: 'default',
     name: '80/20 Payment Plan',
     description: '80% during construction, 20% on handover',
+    is_default: false,
     milestones: [
       { name: 'Booking Deposit', percent: 10, due_days: 0 },
       { name: '1st Installment', percent: 10, due_days: 30 },
@@ -106,6 +109,7 @@ const mockPaymentPlans: PaymentPlan[] = [
       { name: 'On Handover', percent: 20, due_days: 720 },
     ],
     created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   },
 ];
 
@@ -122,12 +126,13 @@ const generateMockOffers = (): Offer[] => [
     offer_number: 'OFF-20250204-0001',
     price_quoted: 1550000,
     discount_amount: 100000,
-    discount_reason: 'Early Bird',
     payment_plan_id: 'pp-60-40',
     payment_plan: mockPaymentPlans[0],
     valid_until: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString(),
     status: 'sent',
+    sent_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
     created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+    updated_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
   },
   {
     id: 'offer-002',
