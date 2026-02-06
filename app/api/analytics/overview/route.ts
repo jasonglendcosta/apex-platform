@@ -33,9 +33,54 @@ const mockOverview = {
   
   // By project
   byProject: {
-    'laguna': { revenue: 28500000, units: 8, name: 'Laguna Residence' },
-    'do-dubai': { revenue: 12400000, units: 3, name: 'DO Dubai Island' },
-    'infinity': { revenue: 4300000, units: 1, name: 'Infinity One' },
+    'laguna': { 
+      id: 'proj-001',
+      org_id: 'org-001',
+      name: 'Laguna Residence', 
+      slug: 'laguna-residence',
+      location: 'Al Reem Island',
+      city: 'Abu Dhabi',
+      country: 'UAE',
+      revenue: 28500000, 
+      units: 8,
+      gallery_urls: [],
+      amenities: [],
+      status: 'active',
+      created_at: '2024-01-01T00:00:00Z',
+      updated_at: '2024-02-06T00:00:00Z'
+    },
+    'do-dubai': { 
+      id: 'proj-002',
+      org_id: 'org-001',
+      name: 'DO Dubai Island', 
+      slug: 'do-dubai-island',
+      location: 'Dubai',
+      city: 'Dubai',
+      country: 'UAE',
+      revenue: 12400000, 
+      units: 3,
+      gallery_urls: [],
+      amenities: [],
+      status: 'active',
+      created_at: '2024-01-01T00:00:00Z',
+      updated_at: '2024-02-06T00:00:00Z'
+    },
+    'infinity': { 
+      id: 'proj-003',
+      org_id: 'org-001',
+      name: 'Infinity One', 
+      slug: 'infinity-one',
+      location: 'Al Reem Island',
+      city: 'Abu Dhabi',
+      country: 'UAE',
+      revenue: 4300000, 
+      units: 1,
+      gallery_urls: [],
+      amenities: [],
+      status: 'active',
+      created_at: '2024-01-01T00:00:00Z',
+      updated_at: '2024-02-06T00:00:00Z'
+    },
   }
 }
 
