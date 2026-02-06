@@ -19,6 +19,20 @@ export function formatCurrency(amount: number): string {
 }
 
 /**
+ * Format date and time in human-readable format
+ */
+export function formatDateTime(dateString: string | Date): string {
+  const date = typeof dateString === 'string' ? new Date(dateString) : dateString;
+  return date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+}
+
+/**
  * Format date in human-readable format
  */
 export function formatDate(dateString: string | Date): string {

@@ -1,4 +1,7 @@
 export { OverviewCards } from './OverviewCards'
-export { SalesVelocityChart } from './SalesVelocityChart'
 export { InventoryStatusChart } from './InventoryStatusChart'
+export { SalesVelocityChart } from './SalesVelocityChart'
 export { AgentLeaderboard } from './AgentLeaderboard'
+export { CollectionsCockpit } from './CollectionsCockpit'
+export { ConversionFunnel } from './ConversionFunnel'
+export { ProjectSelector } from './ProjectSelector'
