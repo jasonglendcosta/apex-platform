@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateOfferPDF, generateOfferNumber, calculateValidUntil, getDefaultPaymentPlans } from '../../../../lib/pdf/generateOfferPDF';
-import { GenerateOfferRequest, Offer, Unit, Customer, User, PaymentPlan } from '../../../../types';
+import { Offer, Unit, Customer, User, PaymentPlan } from '../../../../types';
 
 // Mock data - replace with Supabase queries
 const mockUnits: Record<string, Unit> = {

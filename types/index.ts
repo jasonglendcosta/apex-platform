@@ -321,7 +321,7 @@ export interface UnitFilters {
 }
 
 // Offer Types
-export type OfferStatus = 'draft' | 'pending' | 'approved' | 'rejected' | 'expired';
+export type OfferStatus = 'draft' | 'sent' | 'viewed' | 'accepted' | 'rejected' | 'expired' | 'superseded';
 
 export interface OfferFormData {
   unit_id: string;
@@ -330,19 +330,5 @@ export interface OfferFormData {
   discount_percentage: number;
   payment_plan_id: string;
   valid_until: string;
-  notes?: string;
-}
-
-export interface Offer {
-  id: string;
-  unit: Unit;
-  customer: Customer;
-  price: number;
-  discount_percentage: number;
-  payment_plan: PaymentPlan;
-  status: OfferStatus;
-  created_at: string;
-  valid_until: string;
-  created_by: User;
   notes?: string;
 }
