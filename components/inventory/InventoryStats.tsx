@@ -89,7 +89,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard
           label="Total Units"
-          value={stats.total}
+          value={statsData.total}
           icon={<Building2 className="w-6 h-6 text-[#D86DCB]" />}
           color="text-white"
           bgColor="bg-[#D86DCB]/20"
@@ -98,7 +98,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
         
         <StatCard
           label="Available"
-          value={stats.available}
+          value={statsData.available}
           subValue={`${availablePercent}% of inventory`}
           icon={<CheckCircle className="w-6 h-6 text-emerald-400" />}
           color="text-emerald-400"
@@ -108,7 +108,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
         
         <StatCard
           label="Reserved"
-          value={stats.reserved + stats.booked}
+          value={statsData.reserved + stats.booked}
           subValue="Active reservations"
           icon={<Clock className="w-6 h-6 text-amber-400" />}
           color="text-amber-400"
@@ -118,7 +118,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
         
         <StatCard
           label="Sold"
-          value={stats.sold}
+          value={statsData.sold}
           subValue={`${soldPercent}% sold`}
           icon={<XCircle className="w-6 h-6 text-red-400" />}
           color="text-red-400"
@@ -140,7 +140,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
             <div className="h-8 w-32 bg-white/5 rounded animate-pulse" />
           ) : (
             <p className="text-2xl font-bold text-white">
-              AED {formatValue(stats.totalValue)}
+              AED {formatValue((statsData.total as number)Value)}
             </p>
           )}
         </div>
@@ -156,7 +156,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
             <div className="h-8 w-32 bg-white/5 rounded animate-pulse" />
           ) : (
             <p className="text-2xl font-bold text-emerald-400">
-              AED {formatValue(stats.availableValue)}
+              AED {formatValue((statsData.available as number)Value)}
             </p>
           )}
         </div>
@@ -195,7 +195,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
               {/* Reserved/Booked */}
               <div 
                 className="h-full bg-amber-500 transition-all duration-500"
-                style={{ width: `${Math.round(((stats.reserved + stats.booked) / stats.total) * 100)}%` }}
+                style={{ width: `${Math.round(((((statsData.reserved as number) + (statsData.booked as number))) / (statsData.total as number)) * 100)}%` }}
               />
               {/* Available */}
               <div 
