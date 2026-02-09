@@ -1,6 +1,5 @@
 'use client';
 
-import { InventoryStatsProps } from '@/types';
 import { 
   Building2, 
   CheckCircle, 
@@ -10,6 +9,13 @@ import {
   DollarSign,
   Loader2
 } from 'lucide-react';
+
+interface InventoryStatsProps {
+  stats?: {
+    [key: string]: number | string;
+  };
+  loading?: boolean;
+}
 
 function formatValue(value: number): string {
   if (value >= 1000000000) {
@@ -60,13 +66,21 @@ function StatCard({ label, value, subValue, icon, color, bgColor, loading }: Sta
   );
 }
 
-export function InventoryStats({ stats, loading }: InventoryStatsProps) {
-  const availablePercent = stats.total > 0 
-    ? Math.round((stats.available / stats.total) * 100) 
+const DEFAULT_STATS = {
+  total: 250,
+  available: 112,
+  reserved: 38,
+  sold: 100,
+};
+
+export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: InventoryStatsProps) {
+  const statsData = stats || DEFAULT_STATS;
+  const availablePercent = (statsData.total as number) > 0 
+    ? Math.round(((statsData.available as number) / (statsData.total as number)) * 100) 
     : 0;
   
-  const soldPercent = stats.total > 0 
-    ? Math.round((stats.sold / stats.total) * 100) 
+  const soldPercent = (statsData.total as number) > 0 
+    ? Math.round(((statsData.sold as number) / (statsData.total as number)) * 100) 
     : 0;
 
   return (

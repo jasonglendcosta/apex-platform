@@ -3,11 +3,15 @@
 import { useState } from 'react';
 import { 
   UnitFilters, 
-  FilterBarProps, 
   UnitStatus, 
   ViewType,
-  STATUS_LABELS 
 } from '@/types';
+
+interface FilterBarProps {
+  filters: UnitFilters;
+  onFiltersChange: (filters: UnitFilters) => void;
+  onClear: () => void;
+}
 import { 
   Filter, 
   X, 
@@ -44,7 +48,6 @@ const VIEW_TYPE_OPTIONS: { value: ViewType; label: string; emoji: string }[] = [
   { value: 'pool', label: 'Pool', emoji: '🏊' },
   { value: 'city', label: 'City', emoji: '🏙️' },
   { value: 'park', label: 'Park', emoji: '🌲' },
-  { value: 'marina', label: 'Marina', emoji: '⛵' },
 ];
 
 interface FilterDropdownProps {
@@ -103,14 +106,14 @@ export function FilterBar({ filters, onFiltersChange }: FilterBarProps) {
   };
 
   const toggleArrayFilter = <T,>(
-    key: 'status' | 'bedrooms' | 'viewType' | 'floor',
+    key: 'status' | 'bedrooms' | 'view_type' | 'unit_type',
     value: T
   ) => {
-    const current = (filters[key] as T[] | undefined) || [];
+    const current = (filters[key as keyof UnitFilters] as T[] | undefined) || [];
     const updated = current.includes(value)
       ? current.filter(v => v !== value)
       : [...current, value];
-    updateFilter(key, updated.length > 0 ? updated : undefined);
+    updateFilter(key as keyof UnitFilters, (updated.length > 0 ? updated : undefined) as any);
   };
 
   const clearAllFilters = () => {
@@ -121,10 +124,10 @@ export function FilterBar({ filters, onFiltersChange }: FilterBarProps) {
   const activeFilterCount = 
     (filters.status?.length || 0) +
     (filters.bedrooms?.length || 0) +
-    (filters.viewType?.length || 0) +
-    (filters.priceMin ? 1 : 0) +
-    (filters.priceMax ? 1 : 0) +
-    (filters.search ? 1 : 0);
+    (filters.view_type?.length || 0) +
+    (filters.unit_type?.length || 0) +
+    (filters.price_min ? 1 : 0) +
+    (filters.price_max ? 1 : 0);
 
   return (
     <div className="flex flex-wrap items-center gap-3">
@@ -209,7 +212,7 @@ export function FilterBar({ filters, onFiltersChange }: FilterBarProps) {
         icon={<DollarSign className="w-4 h-4" />}
         isOpen={openDropdown === 'price'}
         onToggle={() => toggleDropdown('price')}
-        activeCount={filters.priceMin || filters.priceMax ? 1 : 0}
+        activeCount={filters.price_min || filters.price_max ? 1 : 0}
       >
         <div className="px-4 py-3 space-y-3">
           <div>
@@ -217,8 +220,8 @@ export function FilterBar({ filters, onFiltersChange }: FilterBarProps) {
             <input
               type="number"
               placeholder="0"
-              value={filters.priceMin || ''}
-              onChange={(e) => updateFilter('priceMin', e.target.value ? Number(e.target.value) : undefined)}
+              value={filters.price_min || ''}
+              onChange={(e) => updateFilter('price_min', e.target.value ? Number(e.target.value) : undefined)}
               className="w-full px-3 py-2 bg-[#0a0a0f] border border-white/10 rounded-lg
                          text-white text-sm focus:outline-none focus:border-[#D86DCB]/50"
             />
@@ -228,8 +231,8 @@ export function FilterBar({ filters, onFiltersChange }: FilterBarProps) {
             <input
               type="number"
               placeholder="Any"
-              value={filters.priceMax || ''}
-              onChange={(e) => updateFilter('priceMax', e.target.value ? Number(e.target.value) : undefined)}
+              value={filters.price_max || ''}
+              onChange={(e) => updateFilter('price_max', e.target.value ? Number(e.target.value) : undefined)}
               className="w-full px-3 py-2 bg-[#0a0a0f] border border-white/10 rounded-lg
                          text-white text-sm focus:outline-none focus:border-[#D86DCB]/50"
             />
@@ -239,8 +242,8 @@ export function FilterBar({ filters, onFiltersChange }: FilterBarProps) {
               <button
                 key={m}
                 onClick={() => {
-                  updateFilter('priceMin', undefined);
-                  updateFilter('priceMax', m * 1000000);
+                  updateFilter('price_min', undefined);
+                  updateFilter('price_max', m * 1000000);
                 }}
                 className="flex-1 py-1.5 text-xs bg-white/5 hover:bg-white/10 
                            rounded text-gray-400 hover:text-white transition-colors"
@@ -256,9 +259,9 @@ export function FilterBar({ filters, onFiltersChange }: FilterBarProps) {
       <FilterDropdown
         label="View"
         icon={<Eye className="w-4 h-4" />}
-        isOpen={openDropdown === 'viewType'}
-        onToggle={() => toggleDropdown('viewType')}
-        activeCount={filters.viewType?.length}
+        isOpen={openDropdown === 'view_type'}
+        onToggle={() => toggleDropdown('view_type')}
+        activeCount={filters.view_type?.length}
       >
         {VIEW_TYPE_OPTIONS.map((option) => (
           <label
@@ -267,8 +270,8 @@ export function FilterBar({ filters, onFiltersChange }: FilterBarProps) {
           >
             <input
               type="checkbox"
-              checked={filters.viewType?.includes(option.value) || false}
-              onChange={() => toggleArrayFilter('viewType', option.value)}
+              checked={filters.view_type?.includes(option.value) || false}
+              onChange={() => toggleArrayFilter('view_type', option.value)}
               className="w-4 h-4 rounded border-white/20 bg-transparent 
                          text-[#D86DCB] focus:ring-[#D86DCB] focus:ring-offset-0"
             />

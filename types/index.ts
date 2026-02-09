@@ -318,6 +318,7 @@ export interface UnitFilters {
   price_max?: number;
   view_type?: ViewType[];
   unit_type?: UnitType[];
+  search?: string;
 }
 
 // Offer Types
