@@ -148,9 +148,7 @@ export async function POST(request: NextRequest) {
       price_quoted: body.price,
       discount_amount: body.discount_amount || 0,
       payment_plan_id: body.payment_plan_id,
-      payment_plan: paymentPlan,
       valid_until: validUntil,
-      notes: body.notes,
       status: 'draft',
       created_at: createdAt,
     };
