@@ -11,12 +11,16 @@ interface OverviewCardsProps {
   }
 }
 
-export function OverviewCards({ stats = {} }: OverviewCardsProps) {
+const DEFAULT_STATS = {
+  revenue: 12.5,
+  unitsSold: 8,
+  daysToClose: 14,
+  conversionRate: 24,
+}
+
+export function OverviewCards({ stats = DEFAULT_STATS }: OverviewCardsProps) {
   const defaultStats = {
-    revenue: 12.5,
-    unitsSold: 8,
-    daysToClose: 14,
-    conversionRate: 24,
+    ...DEFAULT_STATS,
     ...stats
   }
 

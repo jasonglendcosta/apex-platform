@@ -151,6 +151,7 @@ export async function POST(request: NextRequest) {
       valid_until: validUntil,
       status: 'draft',
       created_at: createdAt,
+      updated_at: createdAt,
     };
 
     // Generate PDF
