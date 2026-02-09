@@ -1,21 +1,44 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateOfferPDF, generateOfferNumber, calculateValidUntil, getDefaultPaymentPlans } from '../../../../lib/pdf/generateOfferPDF';
-import { Offer, Unit, Customer, User, PaymentPlan } from '../../../../types';
+import { Offer, Unit, Customer, User, PaymentPlan, Project } from '../../../../types';
+
+interface GenerateOfferRequest {
+  unit_id: string;
+  customer_id: string;
+  agent_id: string;
+  price: number;
+  discount_amount?: number;
+  discount_reason?: string;
+  payment_plan_id: string;
+  valid_days?: number;
+  notes?: string;
+}
 
 // Mock data - replace with Supabase queries
+const mockProjects: Record<string, Project> = {
+  'proj-001': {
+    id: 'proj-001',
+    org_id: 'org-001',
+    name: 'Laguna Residence',
+    slug: 'laguna-residence',
+    location: 'Al Reem Island, Abu Dhabi',
+    country: 'UAE',
+    total_units: 250,
+    launch_date: '2024-01-15',
+    completion_date: '2026-12-31',
+    status: 'active',
+    gallery_urls: [],
+    amenities: ['Swimming Pool', 'Gym', 'Spa', 'Lounge'],
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+};
+
 const mockUnits: Record<string, Unit> = {
   'unit-001': {
     id: 'unit-001',
     project_id: 'proj-001',
-    project: {
-      id: 'proj-001',
-      org_id: 'org-001',
-      name: 'Laguna Residence',
-      location: 'Al Reem Island, Abu Dhabi',
-      total_units: 250,
-      status: 'active',
-      created_at: new Date().toISOString(),
-    },
+    project: mockProjects['proj-001'],
     unit_number: 'LR-0501',
     floor: 5,
     bedrooms: 2,
@@ -29,6 +52,10 @@ const mockUnits: Record<string, Unit> = {
     unit_type: '2br',
     aspect: 'NE',
     status: 'available',
+    is_corner: false,
+    balcony_sqft: 25,
+    unit_images: [],
+    features: ['Balcony', 'Sea View', 'Parking'],
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -44,7 +71,11 @@ const mockCustomers: Record<string, Customer> = {
     nationality: 'UAE',
     source: 'referral',
     lead_score: 85,
+    lead_status: 'qualified',
+    tags: ['VIP', 'Cash'],
+    assigned_agent_id: 'agent-001',
     created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   },
 };
 
@@ -57,7 +88,9 @@ const mockAgents: Record<string, User> = {
     role: 'agent',
     phone: '+971 50 987 6543',
     commission_rate: 2.0,
+    is_active: true,
     created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   },
 };
 
@@ -114,7 +147,6 @@ export async function POST(request: NextRequest) {
       offer_number: offerNumber,
       price_quoted: body.price,
       discount_amount: body.discount_amount || 0,
-      discount_reason: body.discount_reason,
       payment_plan_id: body.payment_plan_id,
       payment_plan: paymentPlan,
       valid_until: validUntil,
@@ -129,7 +161,6 @@ export async function POST(request: NextRequest) {
         offer_number: offerNumber,
         price_quoted: body.price,
         discount_amount: body.discount_amount || 0,
-        discount_reason: body.discount_reason,
         valid_until: validUntil,
         notes: body.notes,
         created_at: createdAt,
