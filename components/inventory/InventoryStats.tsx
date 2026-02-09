@@ -108,7 +108,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
         
         <StatCard
           label="Reserved"
-          value={statsData.reserved + stats.booked}
+          value={(statsData.reserved as number) + (statsData.booked as number)}
           subValue="Active reservations"
           icon={<Clock className="w-6 h-6 text-amber-400" />}
           color="text-amber-400"
@@ -140,7 +140,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
             <div className="h-8 w-32 bg-white/5 rounded animate-pulse" />
           ) : (
             <p className="text-2xl font-bold text-white">
-              AED {formatValue((statsData.total as number)Value)}
+              AED {formatValue((statsData.total as number))}
             </p>
           )}
         </div>
@@ -156,7 +156,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
             <div className="h-8 w-32 bg-white/5 rounded animate-pulse" />
           ) : (
             <p className="text-2xl font-bold text-emerald-400">
-              AED {formatValue((statsData.available as number)Value)}
+              AED {formatValue((statsData.available as number))}
             </p>
           )}
         </div>
