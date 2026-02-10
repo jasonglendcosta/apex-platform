@@ -1,7 +1,13 @@
 'use client';
 
-import { InventoryViewMode, ViewToggleProps } from '@/types';
 import { LayoutGrid, Table, Layers, Box } from 'lucide-react';
+
+type InventoryViewMode = 'grid' | 'table' | 'floor' | '3d';
+
+interface ViewToggleProps {
+  currentView: InventoryViewMode;
+  onViewChange: (view: InventoryViewMode) => void;
+}
 
 interface ViewOption {
   value: InventoryViewMode;
