@@ -1,14 +1,47 @@
 'use client';
 
-import { 
-  Unit, 
-  UnitCardProps, 
-  STATUS_COLORS, 
-  STATUS_LABELS,
-  VIEW_TYPE_ICONS,
-  BEDROOM_LABELS 
-} from '@/types';
+import { Unit } from '@/types';
 import { Bed, Maximize, MapPin, Clock } from 'lucide-react';
+
+interface UnitCardProps {
+  unit: Unit;
+  onClick?: (unit: Unit) => void;
+  selected?: boolean;
+  compact?: boolean;
+}
+
+const STATUS_COLORS: Record<string, { bg: string; text: string; border: string }> = {
+  available: { bg: 'bg-emerald-500/20', text: 'text-emerald-400', border: 'border-emerald-500/20' },
+  reserved: { bg: 'bg-amber-500/20', text: 'text-amber-400', border: 'border-amber-500/20' },
+  booked: { bg: 'bg-blue-500/20', text: 'text-blue-400', border: 'border-blue-500/20' },
+  spa_signed: { bg: 'bg-purple-500/20', text: 'text-purple-400', border: 'border-purple-500/20' },
+  sold: { bg: 'bg-red-500/20', text: 'text-red-400', border: 'border-red-500/20' },
+};
+
+const STATUS_LABELS: Record<string, string> = {
+  available: 'Available',
+  reserved: 'Reserved',
+  booked: 'Booked',
+  spa_signed: 'SPA Signed',
+  sold: 'Sold',
+};
+
+const VIEW_TYPE_ICONS: Record<string, string> = {
+  sea: '🌊',
+  garden: '🌳',
+  pool: '🏊',
+  city: '🏙️',
+  park: '🌲',
+};
+
+const BEDROOM_LABELS: Record<number, string> = {
+  0: 'Studio',
+  1: '1 BR',
+  2: '2 BR',
+  3: '3 BR',
+  4: '4 BR',
+  5: '5+ BR',
+};
 
 function formatPrice(price: number): string {
   if (price >= 1000000) {

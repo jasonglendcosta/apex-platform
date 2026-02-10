@@ -172,7 +172,7 @@ export function InventoryStats({ stats = DEFAULT_STATS, loading = false }: Inven
             <div className="h-8 w-32 bg-white/5 rounded animate-pulse" />
           ) : (
             <p className="text-2xl font-bold text-purple-400">
-              AED {formatValue(stats.soldValue)}
+              AED {formatValue(typeof stats.soldValue === 'number' ? stats.soldValue : 0)}
             </p>
           )}
         </div>

@@ -1,8 +1,15 @@
 'use client';
 
-import { UnitGridProps } from '@/types';
+import { Unit } from '@/types';
 import { UnitCard } from './UnitCard';
 import { Building2, Loader2 } from 'lucide-react';
+
+interface UnitGridProps {
+  units: Unit[];
+  loading: boolean;
+  onUnitClick?: (unit: Unit) => void;
+  selectedUnitId?: string;
+}
 
 export function UnitGrid({ 
   units, 

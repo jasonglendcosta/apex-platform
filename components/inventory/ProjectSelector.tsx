@@ -1,8 +1,14 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Project, ProjectSelectorProps } from '@/types';
+import { Project } from '@/types';
 import { ChevronDown, Building2, MapPin } from 'lucide-react';
+
+interface ProjectSelectorProps {
+  projects: Project[];
+  selectedProjectId: string;
+  onSelect: (projectId: string) => void;
+}
 
 export function ProjectSelector({ 
   projects, 
