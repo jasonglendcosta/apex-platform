@@ -15,6 +15,9 @@ const mockCustomers: Customer[] = [
     source: 'referral',
     lead_score: 85,
     created_at: new Date().toISOString(),
+    lead_status: 'qualified',
+    tags: ['vip', 'repeat-buyer'],
+    updated_at: new Date().toISOString(),
   },
   {
     id: 'cust-002',
@@ -26,6 +29,9 @@ const mockCustomers: Customer[] = [
     source: 'website',
     lead_score: 72,
     created_at: new Date().toISOString(),
+    lead_status: 'active',
+    tags: ['international'],
+    updated_at: new Date().toISOString(),
   },
 ];
 
