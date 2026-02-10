@@ -8,15 +8,3 @@ export { UnitCard } from './UnitCard';
 export { UnitGrid } from './UnitGrid';
 export { UnitDetailModal } from './UnitDetailModal';
 export { InventoryStats } from './InventoryStats';
-
-// Re-export types for convenience
-export type {
-  Unit,
-  Project,
-  UnitFilters,
-  InventoryStats as InventoryStatsType,
-  InventoryViewMode,
-  UnitStatus,
-  ViewType,
-  UnitType,
-} from '@/types';
