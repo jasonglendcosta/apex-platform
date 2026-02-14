@@ -1,61 +1,82 @@
-import { NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
+import { NextRequest, NextResponse } from 'next/server'
 
-// Mock sales velocity data
-const mockVelocity = {
-  weekly: [
-    { week: 'W1', units: 2, revenue: 7.0, date: '2024-01-01' },
-    { week: 'W2', units: 3, revenue: 10.5, date: '2024-01-08' },
-    { week: 'W3', units: 1, revenue: 3.5, date: '2024-01-15' },
-    { week: 'W4', units: 2, revenue: 6.5, date: '2024-01-22' },
-    { week: 'W5', units: 4, revenue: 14.0, date: '2024-01-29' },
-    { week: 'W6', units: 3, revenue: 10.5, date: '2024-02-05' },
-    { week: 'W7', units: 5, revenue: 18.0, date: '2024-02-12' },
-    { week: 'W8', units: 6, revenue: 21.0, date: '2024-02-19' },
-    { week: 'W9', units: 8, revenue: 28.5, date: '2024-02-26' },
-    { week: 'W10', units: 6, revenue: 22.0, date: '2024-03-04' },
-    { week: 'W11', units: 7, revenue: 25.0, date: '2024-03-11' },
-    { week: 'W12', units: 8, revenue: 28.5, date: '2024-03-18' },
-  ],
-  
-  monthly: [
-    { month: 'Oct', units: 8, revenue: 28.5 },
-    { month: 'Nov', units: 11, revenue: 38.5 },
-    { month: 'Dec', units: 9, revenue: 31.5 },
-    { month: 'Jan', units: 8, revenue: 27.5 },
-    { month: 'Feb', units: 22, revenue: 77.0 },
-    { month: 'Mar', units: 21, revenue: 75.5 },
-  ],
-  
-  trend: {
-    direction: 'up',
-    percentChange: 15.4,
-    avgWeeklyUnits: 4.6,
-    avgWeeklyRevenue: 16.3,
-    projectedMonthly: 18,
-    projectedRevenue: 65.2,
-  },
-  
-  byProject: {
-    'laguna': { units: 8, revenue: 28.5, trend: 'up' },
-    'do-dubai': { units: 3, revenue: 10.5, trend: 'stable' },
-    'infinity': { units: 1, revenue: 3.5, trend: 'up' },
-  }
-}
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+)
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url)
-  const projectId = searchParams.get('project') || 'all'
-  const period = searchParams.get('period') || 'weekly'
+export async function GET(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const projectId = searchParams.get('projectId')
+    const orgId = searchParams.get('orgId')
+    const weeks = parseInt(searchParams.get('weeks') || '12')
 
-  await new Promise(resolve => setTimeout(resolve, 100))
-
-  return NextResponse.json({
-    success: true,
-    data: mockVelocity,
-    meta: {
-      projectId,
-      period,
-      generatedAt: new Date().toISOString(),
+    if (!orgId) {
+      return NextResponse.json(
+        { error: 'orgId required' },
+        { status: 400 }
+      )
     }
-  })
+
+    // Get registrations over time
+    let query = supabase
+      .from('reservations')
+      .select('registration_date, sale_price')
+      .eq('status', 'registered')
+
+    if (projectId) {
+      query = query.eq('units.project_id', projectId)
+    }
+
+    const { data: reservations, error } = await query
+
+    if (error) throw error
+
+    // Group by week
+    const weeklyData: { [key: string]: { count: number; revenue: number } } = {}
+
+    // Initialize weeks
+    const now = new Date()
+    for (let i = weeks - 1; i >= 0; i--) {
+      const weekStart = new Date(now)
+      weekStart.setDate(weekStart.getDate() - weekStart.getDay() - (i * 7))
+      weekStart.setHours(0, 0, 0, 0)
+      const weekKey = weekStart.toISOString().split('T')[0]
+      weeklyData[weekKey] = { count: 0, revenue: 0 }
+    }
+
+    // Aggregate reservations
+    reservations?.forEach(res => {
+      if (!res.registration_date) return
+
+      const regDate = new Date(res.registration_date)
+      const weekStart = new Date(regDate)
+      weekStart.setDate(weekStart.getDate() - weekStart.getDay())
+      weekStart.setHours(0, 0, 0, 0)
+      const weekKey = weekStart.toISOString().split('T')[0]
+
+      if (weeklyData[weekKey]) {
+        weeklyData[weekKey].count++
+        weeklyData[weekKey].revenue += res.sale_price || 0
+      }
+    })
+
+    // Format for chart
+    const data = Object.entries(weeklyData).map(([week, stats]) => ({
+      week,
+      units: stats.count,
+      revenue: Math.round(stats.revenue / 1_000_000), // In millions
+      trend: 'stable', // Will be calculated client-side
+    }))
+
+    return NextResponse.json({ data })
+  } catch (error) {
+    console.error('Analytics velocity error:', error)
+    return NextResponse.json(
+      { error: 'Failed to fetch sales velocity' },
+      { status: 500 }
+    )
+  }
 }

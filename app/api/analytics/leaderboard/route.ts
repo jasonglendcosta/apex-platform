@@ -1,126 +1,76 @@
-import { NextResponse } from 'next/server'
+import { createClient } from '@supabase/supabase-js'
+import { NextRequest, NextResponse } from 'next/server'
 
-// Mock agent leaderboard data
-const mockLeaderboard = {
-  period: 'month',
-  agents: [
-    { 
-      rank: 1, 
-      id: 'agent-1',
-      name: 'Ahmed Al-Rashid', 
-      avatar: '/avatars/ahmed.jpg',
-      units: 8, 
-      revenue: 28500000,
-      commission: 712500,
-      conversionRate: 8.2,
-      avgDaysToClose: 12,
-      activeDeals: 5,
-      trend: 'up',
-    },
-    { 
-      rank: 2, 
-      id: 'agent-2',
-      name: 'Sarah Johnson', 
-      avatar: '/avatars/sarah.jpg',
-      units: 6, 
-      revenue: 22100000,
-      commission: 552500,
-      conversionRate: 6.8,
-      avgDaysToClose: 14,
-      activeDeals: 4,
-      trend: 'up',
-    },
-    { 
-      rank: 3, 
-      id: 'agent-3',
-      name: 'Mohammed Hassan', 
-      avatar: '/avatars/mohammed.jpg',
-      units: 5, 
-      revenue: 18700000,
-      commission: 467500,
-      conversionRate: 5.9,
-      avgDaysToClose: 16,
-      activeDeals: 6,
-      trend: 'stable',
-    },
-    { 
-      rank: 4, 
-      id: 'agent-4',
-      name: 'Lisa Chen', 
-      avatar: '/avatars/lisa.jpg',
-      units: 4, 
-      revenue: 15200000,
-      commission: 380000,
-      conversionRate: 5.2,
-      avgDaysToClose: 15,
-      activeDeals: 3,
-      trend: 'up',
-    },
-    { 
-      rank: 5, 
-      id: 'agent-5',
-      name: 'James Williams', 
-      avatar: '/avatars/james.jpg',
-      units: 3, 
-      revenue: 11800000,
-      commission: 295000,
-      conversionRate: 4.5,
-      avgDaysToClose: 18,
-      activeDeals: 4,
-      trend: 'down',
-    },
-    { 
-      rank: 6, 
-      id: 'agent-6',
-      name: 'Aisha Mahmoud', 
-      avatar: '/avatars/aisha.jpg',
-      units: 2, 
-      revenue: 8400000,
-      commission: 210000,
-      conversionRate: 4.1,
-      avgDaysToClose: 20,
-      activeDeals: 2,
-      trend: 'stable',
-    },
-  ],
-  
-  teamStats: {
-    totalUnits: 28,
-    totalRevenue: 104700000,
-    avgConversionRate: 5.8,
-    avgDaysToClose: 15.8,
-    totalActiveDeals: 24,
-  },
-  
-  monthlyTargets: {
-    units: 35,
-    revenue: 120000000,
-    unitsProgress: 80,
-    revenueProgress: 87.25,
-  },
-  
-  topByMetric: {
-    mostUnits: { name: 'Ahmed Al-Rashid', value: 8 },
-    highestRevenue: { name: 'Ahmed Al-Rashid', value: 28500000 },
-    bestConversion: { name: 'Ahmed Al-Rashid', value: 8.2 },
-    fastestClose: { name: 'Ahmed Al-Rashid', value: 12 },
-  }
-}
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+)
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url)
-  const projectId = searchParams.get('project') || 'all'
-  const period = searchParams.get('period') || 'month'
+export async function GET(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const orgId = searchParams.get('orgId')
+    const limit = parseInt(searchParams.get('limit') || '10')
 
-  await new Promise(resolve => setTimeout(resolve, 100))
-
-  return NextResponse.json({
-    success: true,
-    data: mockLeaderboard,
-    meta: {
-      projectId,
-      period,
-      generatedAt: new Date().toISOString(),
+    if (!orgId) {
+      return NextResponse.json(
+        { error: 'orgId required' },
+        { status: 400 }
+      )
     }
-  })
+
+    // Get all agents
+    const { data: agents, error: agentsError } = await supabase
+      .from('users')
+      .select('id, name, avatar_url, email')
+      .eq('org_id', orgId)
+      .eq('role', 'agent')
+
+    if (agentsError) throw agentsError
+
+    if (!agents || agents.length === 0) {
+      return NextResponse.json({ agents: [] })
+    }
+
+    // For each agent, count closed deals and revenue
+    const agentStats = await Promise.all(
+      agents.map(async (agent) => {
+        const { data: reservations } = await supabase
+          .from('reservations')
+          .select('sale_price, status')
+          .eq('agent_id', agent.id)
+          .eq('status', 'registered')
+
+        const unitsSold = reservations?.length || 0
+        const revenue = reservations?.reduce((sum, r) => sum + (r.sale_price || 0), 0) || 0
+
+        return {
+          id: agent.id,
+          name: agent.name,
+          email: agent.email,
+          avatar_url: agent.avatar_url,
+          unitsSold,
+          revenue,
+        }
+      })
+    )
+
+    // Sort by revenue descending
+    agentStats.sort((a, b) => b.revenue - a.revenue)
+
+    // Return top N
+    const leaderboard = agentStats.slice(0, limit).map((agent, index) => ({
+      ...agent,
+      rank: index + 1,
+      percentage: 100, // Will be calculated client-side based on top performer
+    }))
+
+    return NextResponse.json({ agents: leaderboard })
+  } catch (error) {
+    console.error('Analytics leaderboard error:', error)
+    return NextResponse.json(
+      { error: 'Failed to fetch leaderboard' },
+      { status: 500 }
+    )
+  }
 }
